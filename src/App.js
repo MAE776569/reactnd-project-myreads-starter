@@ -17,7 +17,7 @@ class BooksApp extends React.Component {
   };
 
   componentDidMount() {
-    //get all books and update state
+    //Get all books and update state
     BooksAPI.getAll().then(books => {
       this.setState({
         books
@@ -26,7 +26,12 @@ class BooksApp extends React.Component {
   }
 
   changeCategory = (shelf, book) => {
+    //Find the book by id
     const bookIndex = this.state.books.findIndex(b => b.id === book.id);
+    //Update the book in the database
+    BooksAPI.update(book, shelf);
+    
+    //Change the state
     this.setState(prevState => {
       const books = prevState.books;
       books[bookIndex].shelf = shelf;
@@ -38,7 +43,7 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Route
-          path="/"
+          exact path="/"
           render={() => (
             <BookCategories
               books={this.state.books}
