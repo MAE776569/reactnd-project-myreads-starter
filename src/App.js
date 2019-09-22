@@ -25,12 +25,26 @@ class BooksApp extends React.Component {
     });
   }
 
+  changeCategory = (shelf, book) => {
+    const bookIndex = this.state.books.findIndex(b => b.id === book.id);
+    this.setState(prevState => {
+      const books = prevState.books;
+      books[bookIndex].shelf = shelf;
+      return { books };
+    });
+  };
+
   render() {
     return (
       <div className="app">
         <Route
           path="/"
-          render={() => <BookCategories books={this.state.books} />}
+          render={() => (
+            <BookCategories
+              books={this.state.books}
+              onChangeCategory={this.changeCategory}
+            />
+          )}
         />
 
         <Route path="/search" component={SearchBooks} />

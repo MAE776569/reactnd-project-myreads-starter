@@ -26,19 +26,28 @@ class BookCategories extends Component {
             <div className="bookshelf">
               <h2 className="bookshelf-title">Currently Reading</h2>
               <div className="bookshelf-books">
-                <BookList books={currentlyReadingBooks} />
+                <BookList
+                  books={currentlyReadingBooks}
+                  onChangeCategory={this.props.onChangeCategory}
+                />
               </div>
             </div>
             <div className="bookshelf">
               <h2 className="bookshelf-title">Want to Read</h2>
               <div className="bookshelf-books">
-                <BookList books={wantToReadBook} />
+                <BookList
+                  books={wantToReadBook}
+                  onChangeCategory={this.props.onChangeCategory}
+                />
               </div>
             </div>
             <div className="bookshelf">
               <h2 className="bookshelf-title">Read</h2>
               <div className="bookshelf-books">
-                <BookList books={readBooks} />
+                <BookList
+                  books={readBooks}
+                  onChangeCategory={this.props.onChangeCategory}
+                />
               </div>
             </div>
           </div>

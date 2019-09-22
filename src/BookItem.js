@@ -15,7 +15,7 @@ function BookItem(props) {
             }}
           ></div>
           <div className="book-shelf-changer">
-            <select>
+            <select onChange={(e) => props.onChangeCategory(e.target.value, props.book)}>
               <option value="move" disabled>
                 Move to...
               </option>
