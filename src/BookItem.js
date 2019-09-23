@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function BookItem(props) {
+  
   return (
     <li>
       <div className="book">
@@ -11,12 +12,14 @@ function BookItem(props) {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${props.book.imageLinks.thumbnail})`
+              backgroundImage: props.book.imageLinks
+                ? `url(${props.book.imageLinks.thumbnail})`
+                : "url(https://dummyimage.com/128x170/eee/000000&text=No+Cover)"
             }}
           ></div>
           <div className="book-shelf-changer">
             <select
-              value={props.book.shelf}
+              value={props.book.shelf ? props.book.shelf : "none"}
               onChange={e => props.onChangeCategory(e.target.value, props.book)}
             >
               <option value="move" disabled>
@@ -30,7 +33,11 @@ function BookItem(props) {
           </div>
         </div>
         <div className="book-title">{props.book.title}</div>
-        <div className="book-authors">{props.book.authors.join(', ')}</div>
+        {props.book.authors && (
+          <div className="book-authors">
+            {props.book.authors.join(', ')}
+          </div>
+        )}
       </div>
     </li>
   );
