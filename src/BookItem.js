@@ -15,7 +15,10 @@ function BookItem(props) {
             }}
           ></div>
           <div className="book-shelf-changer">
-            <select onChange={(e) => props.onChangeCategory(e.target.value, props.book)}>
+            <select
+              value={props.book.shelf}
+              onChange={e => props.onChangeCategory(e.target.value, props.book)}
+            >
               <option value="move" disabled>
                 Move to...
               </option>
@@ -27,14 +30,15 @@ function BookItem(props) {
           </div>
         </div>
         <div className="book-title">{props.book.title}</div>
-        <div className="book-authors">{props.book.authors.toString()}</div>
+        <div className="book-authors">{props.book.authors.join(', ')}</div>
       </div>
     </li>
   );
 }
 
 BookItem.propTypes = {
-  book: PropTypes.object.isRequired
+  book: PropTypes.object.isRequired,
+  onChangeCategory: PropTypes.func.isRequired
 };
 
 export default BookItem;
