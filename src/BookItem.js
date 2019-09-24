@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function BookItem(props) {
-  
   return (
     <li>
       <div className="book">
@@ -19,7 +18,7 @@ function BookItem(props) {
           ></div>
           <div className="book-shelf-changer">
             <select
-              value={props.book.shelf ? props.book.shelf : "none"}
+              defaultValue={props.book.shelf ? props.book.shelf : "none"}
               onChange={e => props.onChangeCategory(e.target.value, props.book)}
             >
               <option value="move" disabled>
@@ -34,9 +33,7 @@ function BookItem(props) {
         </div>
         <div className="book-title">{props.book.title}</div>
         {props.book.authors && (
-          <div className="book-authors">
-            {props.book.authors.join(', ')}
-          </div>
+          <div className="book-authors">{props.book.authors.join(", ")}</div>
         )}
       </div>
     </li>

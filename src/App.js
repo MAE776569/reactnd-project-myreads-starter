@@ -58,13 +58,10 @@ class BooksApp extends React.Component {
 
         <Route
           path="/search"
-          render={({ history }) => (
+          render={() => (
             <SearchBooks
               libraryBooks={this.state.books}
-              onChangeCategory={(shelf, book) => {
-                this.changeCategory(shelf, book);
-                history.push("/");
-              }}
+              onChangeCategory={this.changeCategory}
             />
           )}
         />
